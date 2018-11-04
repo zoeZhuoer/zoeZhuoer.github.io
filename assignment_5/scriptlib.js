@@ -1,8 +1,6 @@
 $(document).ready(function(){
 
-
-
-     $("button#roll_up").click(function() {
+     $("button#requirement").click(function() {
        var table1_items = [];
        var i = 0;
        var airtable_read_endpoint = "https://api.airtable.com/v0/app0OMe22mp6O0OBh/choose%20a%20suitable%20US%20school%20for%20your%20phd%20study?api_key=keyLbyY2mbRiEm11i";
@@ -12,10 +10,10 @@ $(document).ready(function(){
                   table1_items = [];
                       table1_items.push(value.fields.SchoolName);
                       table1_items.push(value.fields.program_name);
-                      table1_items.push(value.fields.QS_ranking);
-                      table1_items.push(value.fields.specialist_ranking);
+                      table1_items.push(value.fields.language_requirement);
+                      table1_items.push(value.fields.writing_sample_requirement);
                       table1_items.push(value.fields.educational_requirements);
-                      table1_items.push(value.fields.website);
+                      table1_items.push(value.fields.application_deadline);
                       table1_dataSet.push(table1_items);
                       console.log(table1_items);
                }); // end .each
