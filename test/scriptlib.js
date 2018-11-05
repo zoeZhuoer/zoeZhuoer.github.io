@@ -44,13 +44,13 @@ $(document).ready(function(){
           var table2_items = [];
            var i = 0;
            var airtable_read_endpoint =
-           "https://api.airtable.com/v0/appM38HXlEVhxmnqx/Stage?api_key=keyTcsTzckqyBTlk8&view=Grid%20view";
+           "https://api.airtable.com/v0/app0OMe22mp6O0OBh/choose%20a%20suitable%20US%20school%20for%20your%20phd%20study?api_key=keyLbyY2mbRiEm11i";
            var table2_dataSet = [];
            $.getJSON(airtable_read_endpoint, function(result) {
                   $.each(result.records, function(key,value) {
                       table2_items = [];
-                          table2_items.push(value.fields.Name);
-                          table2_items.push(value.fields.Total_Entries);
+                          table2_items.push(value.fields.SchoolName);
+                          table2_items.push(value.fields.QS_ranking);
                           table2_dataSet.push(table2_items);
                           console.log(table2_items);
                    }); // end .each
@@ -62,7 +62,7 @@ $(document).ready(function(){
                       columns: [
                           { title: "Name",
                             defaultContent:""},
-                          { title: "Total Entries",
+                          { title: "ranking",
                             defaultContent:""},
                       ] // rmf columns
                   } ); // end dataTable
@@ -73,8 +73,8 @@ $(document).ready(function(){
                            type : 'bar'
                        },
                        axis: {
-                         x: {label: 'Stage'},
-                         y: {label: '# of Entries'}
+                         x: {label: 'schoolname'},
+                         y: {label: '# of ranking'}
                        },
                        bar: {
                            title: "Tasks for Each Stage:",
