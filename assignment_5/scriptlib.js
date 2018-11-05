@@ -39,7 +39,6 @@ $(document).ready(function(){
             } );
        }); // end .getJSON
 
-        $("button#roll_up").click(function() {
          var table2_items = [];
          var i = 0;
          var airtable_read_endpoint =
@@ -48,14 +47,22 @@ $(document).ready(function(){
          $.getJSON(airtable_read_endpoint, function(result) {
                 $.each(result.records, function(key,value) {
                     table2_items = [];
-                        table2_items.push(value.fields.SchoolName);
-                        table2_items.push(value.fields.specialist_ranking);
-                        table2_items.push(value.fields.QS_ranking);
+                        table2_items.push(value.fields.Name);
+                        table2_items.push(value.fields.Total_Entries);
                         table2_dataSet.push(table2_items);
                         console.log(table2_items);
                  }); // end .each
                  console.log(table2_dataSet);
-
+                $('#table2').DataTable( {
+                    data: table2_dataSet,
+                    retrieve: true,
+                    ordering: false,
+                    columns: [
+                        { title: "Name",
+                          defaultContent:""},
+                        { title: "Total Entries",
+                          defaultContent:""},
+                    ] // rmf columns
                 } ); // end dataTable
 
                 var chart = c3.generate({
@@ -64,25 +71,13 @@ $(document).ready(function(){
                          type : 'bar'
                      },
                      bar: {
-                         title: "The ranking",
+                         title: "Tasks for Each Stage:",
                      }
                  });
 
           }); // end .getJSON
        }); // end button
 
-      // $.getJSON('http://localhost/d756a/data_export.json/Computer+TV', function(obj) {
+        // $.getJSON('http://localhost/d756a/data_export.json/Computer+TV', function(obj) {
+
 }); // document ready
-
-
-$('#table2').DataTable( {
-    data: table2_dataSet,
-    retrieve: true,
-    ordering: false,
-    columns: [
-        { title: "Name",
-          defaultContent:""},
-        { title: "Total Entries",
-          defaultContent:""},
-    ] // rmf columns
-} ); // end dataTable
